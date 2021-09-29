@@ -37,16 +37,14 @@ impl Screen {
 }
 
 #[derive(Copy, Clone, Debug)]
-pub struct Pixel(pub usize);
+pub struct Pixel(pub f32);
 
 impl Pixel {
     fn ascii_repr(&self) -> char {
-        const RENDER_CHAR: [char; 12] =
-            ['.', ',', '-', '~', ':', ';', '=', '!', '*', '#', '$', '@'];
-        let value = self.0.max(0).min(11);
-        if value == 0 {
-            return ' ';
-        }
+        const RENDER_CHAR: [char; 13] =
+            [' ', '.', ',', '-', '~', ':', ';', '=', '!', '*', '#', '$', '@'];
+        let value = self.0 as usize;
+        let value = value.max(0).min(12);
         RENDER_CHAR[value]
     }
 }
@@ -71,7 +69,7 @@ impl Frame {
     pub fn new(window_size: WindowSize) -> Self {
         Self {
             window_size,
-            data: vec![Pixel(0); window_size.width * window_size.height + 1],
+            data: vec![Pixel(0.0); window_size.width * window_size.height + 1],
         }
     }
 }

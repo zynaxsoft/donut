@@ -41,10 +41,10 @@ impl Renderable for Donut {
                     && y < param.window_size.height
                     && 0 < x
                     && x < param.window_size.width
-                    && (zframe.get(x, y).0 as f32) <= mess
+                    && (zframe.get(x, y).0) < mess
                 {
-                    zframe.set(x, y, Pixel(mess as usize));
-                    frame.set(x, y, Pixel(n));
+                    zframe.set(x, y, Pixel(mess));
+                    frame.set(x, y, Pixel(n as f32 + 1.0));
                 }
             }
         }

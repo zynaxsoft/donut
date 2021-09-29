@@ -8,7 +8,7 @@ fn main() {
     let mut donut = shape::Donut {
         inner_radius: 1.2,
         outer_radius: 1.2,
-        smoothness: 80,
+        smoothness: 100,
     };
     let window_size = WindowSize::default();
     let screen = Screen::new(window_size);
