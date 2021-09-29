@@ -39,10 +39,13 @@ pub struct Pixel(pub usize);
 
 impl Pixel {
     fn ascii_repr(&self) -> char {
-        if self.0 == 0 {
+        const RENDER_CHAR: [char; 12] =
+            ['.', ',', '-', '~', ':', ';', '=', '!', '*', '#', '$', '@'];
+        let value = self.0.max(0).min(11);
+        if value == 0 {
             return ' ';
         }
-        (self.0 as u8 + 65) as char
+        RENDER_CHAR[value]
     }
 }
 
