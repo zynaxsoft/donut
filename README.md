@@ -1,4 +1,6 @@
-# donut [WIP]
+# donut
+
+![](https://raw.githubusercontent.com/zynaxsoft/donut/main/donut.gif)
 
 Inspired from the famous `donut.c`.
 
