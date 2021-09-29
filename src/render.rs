@@ -1,7 +1,7 @@
 use crate::screen::{Frame, WindowSize};
 
 pub trait Renderable {
-    fn render(&mut self, param:RenderParameter) -> Frame;
+    fn render(&mut self, param:RenderParameter, zframe: &mut Frame) -> Frame;
 }
 
 pub struct RenderParameter {

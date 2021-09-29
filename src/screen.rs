@@ -7,8 +7,8 @@ pub struct WindowSize {
 impl Default for WindowSize {
     fn default() -> Self {
         Self {
-            width: 40,
-            height: 40,
+            width: 80,
+            height: 24,
         }
     }
 }
@@ -24,13 +24,15 @@ impl Screen {
     }
 
     pub fn draw(&self, frame: &Frame) {
-        print!("\x1B[2J\x1B[1;1H"); // Clear the screen
+        let mut result = String::new();
+        result.push_str("\x1b[H");
         for (i, v) in frame.data.iter().enumerate() {
             if i.rem_euclid(self.window_size.width) == 0 {
-                println!();
+                result.push('\n');
             }
-            print!("{}", v.ascii_repr());
+            result.push(v.ascii_repr());
         }
+        print!("{}", result);
     }
 }
 
@@ -58,6 +60,10 @@ pub struct Frame {
 impl Frame {
     pub fn set(&mut self, x: usize, y: usize, value: Pixel) {
         self.data[y * self.window_size.width + x] = value;
+    }
+
+    pub fn get(&self, x: usize, y: usize) -> Pixel {
+        self.data[y * self.window_size.width + x]
     }
 }
 
